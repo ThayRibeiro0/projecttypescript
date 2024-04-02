@@ -4,15 +4,16 @@ import { showReviewTotal, populateUser, showDetails, getTopTwoReviews} from './u
 import { Permissions , LoyaltyUser } from './enums'
 import { Review, Property } from './interfaces'
 
-const propertyContainer = document.querySelector('.properties')
-const reviewContainer = document.querySelector('.reviews')
-const container = document.querySelector('.container')
-const button = document.querySelector('button')
-const footer = document.querySelector('.footer')
-
+const propertyContainer = document.querySelector<HTMLUListElement>('.properties')
+const reviewContainer = document.querySelector<HTMLUListElement>('.reviews')
+const container = document.querySelector<HTMLUListElement>('.container')
+const button = document.querySelector<HTMLUListElement>('button')
+const footer = document.querySelector<HTMLUListElement>('.footer')
 let isLoggedIn: boolean
 
 // Reviews
+
+
 const reviews: Review[] = [
     {
         name: 'Sheila',
@@ -46,7 +47,7 @@ const you = {
 // Array of Properties
 const properties : Property[] = [
     {
-        image: 'images/colombia-property.jpg',
+        image: '../images/colombia-property.jpg',
         title: 'Colombian Shack',
         price: 45,
         location: {

@@ -42,7 +42,7 @@ const you = {
 // Array of Properties
 const properties = [
     {
-        image: 'images/colombia-property.jpg',
+        image: '../images/colombia-property.jpg',
         title: 'Colombian Shack',
         price: 45,
         location: {
