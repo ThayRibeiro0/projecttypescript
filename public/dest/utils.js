@@ -1,12 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTopTwoReviews = exports.makeMultiple = exports.showDetails = exports.populateUser = exports.showReviewTotal = void 0;
 const reviewTotalDisplay = document.querySelector('#reviews');
 const returningUserDisplay = document.querySelector('#returning-user');
 const userNameDisplay = document.querySelector('#user');
-const enums_1 = require("./enums");
-function showReviewTotal(value, reviewer, isLoyalty) {
-    const iconDisplay = enums_1.LoyaltyUser.GOLD_USER ? '⭐' : '';
+import { LoyaltyUser } from './enums';
+export function showReviewTotal(value, reviewer, isLoyalty) {
+    const iconDisplay = LoyaltyUser.GOLD_USER ? '⭐' : '';
     // Ensure reviewTotalDisplay is not null before setting its innerHTML
     if (reviewTotalDisplay !== null) {
         reviewTotalDisplay.innerHTML = value.toString() + ' review' + makeMultiple(value) + ' | last reviewed by ' + reviewer + ' ' + iconDisplay;
@@ -16,8 +13,7 @@ function showReviewTotal(value, reviewer, isLoyalty) {
         console.error("reviewTotalDisplay is null");
     }
 }
-exports.showReviewTotal = showReviewTotal;
-function populateUser(isReturning, userName) {
+export function populateUser(isReturning, userName) {
     if (isReturning) {
         // Ensure returningUserDisplay is not null before setting its innerHTML
         if (returningUserDisplay !== null) {
@@ -37,25 +33,21 @@ function populateUser(isReturning, userName) {
         console.error("userNameDisplay is null");
     }
 }
-exports.populateUser = populateUser;
-function showDetails(value, element, price) {
+export function showDetails(value, element, price) {
     if (value) {
         const priceDisplay = document.createElement('div');
         priceDisplay.innerHTML = price.toString() + '/night';
         element.appendChild(priceDisplay);
     }
 }
-exports.showDetails = showDetails;
-function makeMultiple(value) {
+export function makeMultiple(value) {
     if (value > 1 || value == 0) {
         return 's';
     }
     else
         return '';
 }
-exports.makeMultiple = makeMultiple;
-function getTopTwoReviews(reviews) {
+export function getTopTwoReviews(reviews) {
     const sortedReviews = reviews.sort((a, b) => b.stars - a.stars);
     return sortedReviews.slice(0, 2);
 }
-exports.getTopTwoReviews = getTopTwoReviews;

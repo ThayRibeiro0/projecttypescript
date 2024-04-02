@@ -1,9 +1,6 @@
-"use strict";
 // Code Tidy
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.MainProperty = void 0;
-const utils_1 = require("./utils");
-const enums_1 = require("./enums");
+import { showReviewTotal, populateUser, showDetails, getTopTwoReviews } from './utils';
+import { Permissions, LoyaltyUser } from './enums';
 const propertyContainer = document.querySelector('.properties');
 const reviewContainer = document.querySelector('.reviews');
 const container = document.querySelector('.container');
@@ -15,26 +12,26 @@ const reviews = [
     {
         name: 'Sheila',
         stars: 5,
-        loyaltyUser: enums_1.LoyaltyUser.GOLD_USER,
+        loyaltyUser: LoyaltyUser.GOLD_USER,
         date: '01-04-2021'
     },
     {
         name: 'Andrzej',
         stars: 3,
-        loyaltyUser: enums_1.LoyaltyUser.BRONZE_USER,
+        loyaltyUser: LoyaltyUser.BRONZE_USER,
         date: '28-03-2021'
     },
     {
         name: 'Omar',
         stars: 4,
-        loyaltyUser: enums_1.LoyaltyUser.SILVER_USER,
+        loyaltyUser: LoyaltyUser.SILVER_USER,
         date: '27-03-2021',
     },
 ];
 const you = {
     firstName: 'Bobby',
     lastName: 'Brown',
-    permissions: enums_1.Permissions.ADMIN,
+    permissions: Permissions.ADMIN,
     isReturning: true,
     age: 35,
     stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
@@ -95,8 +92,8 @@ const properties = [
     }
 ];
 // Functions
-(0, utils_1.showReviewTotal)(reviews.length, reviews[0].name, reviews[0].loyaltyUser);
-(0, utils_1.populateUser)(you.isReturning, you.firstName);
+showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser);
+populateUser(you.isReturning, you.firstName);
 // Add the properties
 for (let i = 0; i < properties.length; i++) {
     const card = document.createElement('div');
@@ -105,7 +102,7 @@ for (let i = 0; i < properties.length; i++) {
     const image = document.createElement('img');
     image.setAttribute('src', properties[i].image);
     card.appendChild(image);
-    (0, utils_1.showDetails)(you.permissions, card, properties[i].price);
+    showDetails(you.permissions, card, properties[i].price);
     // Ensure propertyContainer is not null before appending child
     if (propertyContainer !== null) {
         propertyContainer.appendChild(card);
@@ -115,7 +112,7 @@ let count = 0;
 function addReviews(array) {
     if (!count) {
         count++;
-        const topTwo = (0, utils_1.getTopTwoReviews)(array);
+        const topTwo = getTopTwoReviews(array);
         for (let i = 0; i < topTwo.length; i++) {
             const card = document.createElement('div');
             card.classList.add('review-card');
@@ -162,11 +159,10 @@ class MainProperty {
         this.reviews = reviews;
     }
 }
-exports.MainProperty = MainProperty;
 let yourMainProperty = new MainProperty('images/italian-property.jpg', 'Italian House', [{
         name: 'Olive',
         stars: 5,
-        loyaltyUser: enums_1.LoyaltyUser.GOLD_USER,
+        loyaltyUser: LoyaltyUser.GOLD_USER,
         date: '12-04-2021'
     }]);
 const mainImageContainer = document.querySelector('.main-image');
@@ -178,3 +174,4 @@ if (mainImageContainer !== null) {
 else {
     console.error("mainImageContainer is null");
 }
+export { MainProperty };
